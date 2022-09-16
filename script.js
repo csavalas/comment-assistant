@@ -33,6 +33,11 @@ function addComment()
     new_comment.className = "comment-box clickable dotted wrapped";
     new_comment.appendChild(document.createTextNode(comment_editor.value));
     new_comment.addEventListener("click", copyText);
+    new_comment.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+        copyText({'target': this, ctrlKey: true});
+    });
+    
     document.getElementById("comment-container").appendChild(new_comment);
     comment_editor.value = "";
 }
